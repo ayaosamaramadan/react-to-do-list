@@ -1,11 +1,19 @@
 
-function Theproj({item,setisprojOpen}) {
-  function handleisOpen(){
-    setisprojOpen(true)
+function Theproj({item,setisprojOpen  , setnewproj,setactiveproj}) {
+  function handleisOpen(Projid){
+    console.log(Projid);
+    console.log(item.Projid);
+  {  item.Projid===Projid&&
     
+      setisprojOpen(true);
+      setactiveproj(Projid);
+      setnewproj(false);
+    
+    }
+
   };
   return (
-  <li key={item} onClick={handleisOpen}>
+  <li onClick={()=>handleisOpen(item.Projid)}>
     {item.title}
   </li>
   )

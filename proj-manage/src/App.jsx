@@ -8,18 +8,18 @@ import Openedproj from "./components/Openedproj";
 function App() {
 
   const[newproj, setnewproj] = useState(false);
-  const [data, setData] = useState([
-  ]);
+  const [data, setData] = useState([]);
   const [isprojOpen, setisprojOpen] = useState(false);
-  const [projIndex, setprojIndex] = useState(0);
+  const [activeproj, setactiveproj] = useState(null);
   function newprojHandler(){setnewproj(true);}
   return (
     <main className="gap-8 flex h-screen my-8">
-      <Sidenav setisprojOpen={setisprojOpen} data={data} clickk={newprojHandler}/>
-      {newproj&&<Newpro  data={data} setData={setData}/>}
-      {!newproj&&<Headerr clickk={newprojHandler}/>}
-      { isprojOpen && <Openedproj data={data} /> }
-    </main>
+      <Sidenav setnewproj={setnewproj} setactiveproj={setactiveproj} isprojOpen={isprojOpen} setisprojOpen={setisprojOpen} data={data} clickk={newprojHandler}/>
+      {newproj&&<Newpro data={data} setData={setData}/>}
+      {(!newproj&&!isprojOpen)&&<Headerr clickk={newprojHandler}/>} 
+      {
+        isprojOpen&&<Openedproj data={data} activeproj={activeproj}/>
+      }  </main>
   )
 }
 

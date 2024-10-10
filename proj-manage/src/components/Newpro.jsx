@@ -4,14 +4,15 @@ import Inputss from "./Inputss";
 
 
 function Newpro({data,setData}) {
+  
   const [title,settitle]=useState('');
   const [descriptio,setdescription]=useState('');
   const [due,setdue]= useState( new Date().toISOString().split('T')[0]);
 
 
-  function handleSave(e) {
-    e.preventDefault();
-    setData([...data, { title, descriptio, due }]);
+  function handleSave() {
+  
+    setData([ { title, descriptio, due ,Projid :data.length}, ...data]);
     console.log(data);
   }
 
@@ -23,6 +24,7 @@ function Newpro({data,setData}) {
 
   return (
     <div className="mt-16 w-[35rem]">
+    
       <menu className="flex items-center justify-end gap-4 my-4">
         <li>
           <button className="text-stone-800 hover:text-stone-950" onClick={handleCancel}> Cancel</button>
