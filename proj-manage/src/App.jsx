@@ -1,3 +1,4 @@
+import Headerr from "./components/Headerr"
 import Newpro from "./components/Newpro"
 import Sidenav from "./components/Sidenav"
 
@@ -9,6 +10,7 @@ function App() {
       
       <Sidenav/>
   <Newpro />
+  <Headerr/>
     </main>
   )
 }
