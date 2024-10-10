@@ -7,10 +7,9 @@ function App() {
 
   return (
     <main className="gap-8 flex h-screen my-8">
-      
       <Sidenav/>
-  <Newpro />
-  <Headerr/>
+      <Newpro />
+      <Headerr/>
     </main>
   )
 }
