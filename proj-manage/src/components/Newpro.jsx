@@ -11,7 +11,7 @@ function Newpro({ data, setData }) {
   const [descriptioerror, setdesError] = useState(false);
 
   function handleSave() {
-    
+
     const trimmedTitle = title.trim();
     const trimmedDescriptio = descriptio.trim();
 
@@ -49,7 +49,6 @@ function Newpro({ data, setData }) {
             className="text-stone-800 hover:text-stone-950"
             onClick={handleCancel}
           >
-            {" "}
             Cancel
           </button>
         </li>
@@ -62,17 +61,16 @@ function Newpro({ data, setData }) {
           </button>
         </li>
       </menu>
+      
       <div>
-        <Inputss
-          titleerror={titleerror}
+        <Inputss titleerror={titleerror}
           descriptioerror={descriptioerror}
           title={title}
           settitle={settitle}
           descriptio={descriptio}
           setdescription={setdescription}
           due={due}
-          setdue={setdue}
-        />
+          setdue={setdue}/>
       </div>
 
       {(titleerror || descriptioerror) && <Erro t={title} d={descriptio} />}
