@@ -10,10 +10,11 @@ function Sidenav({setnewproj,isprojOpen,clickk, data ,setisprojOpen , setactivep
           <span>+</span> Add Project
         </Button>
       </div>
-      <ul>
+      <ul className="overflow-y-scroll max-h-[70%] h-[70%] max-w-[100%] mt-7">
         {
           data&&data.map((item,index)=>{
             return (
+            
               <Theproj setnewproj={setnewproj} setactiveproj={setactiveproj} key={index} item={item} setisprojOpen={setisprojOpen} isprojOpen={isprojOpen}/>
             )
           })

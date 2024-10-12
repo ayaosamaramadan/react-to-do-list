@@ -11,7 +11,8 @@ function App() {
   const [activeproj, setactiveproj] = useState(null);
 
   function newprojHandler() 
-  {setnewproj(true);
+  {
+    setnewproj(true);
     setisprojOpen(false);
   }
 
