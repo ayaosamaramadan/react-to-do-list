@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 
 function Openedproj({ data, activeproj, setData }) {
   const [task, settask] = useState("");
   // const [activeclear, setactiveclear] = useState(null);
+  const [isComplete, setIsComplete] = useState(false);
 
   let newdata = data;
 
@@ -22,10 +24,8 @@ function Openedproj({ data, activeproj, setData }) {
       return item;
     });
     setData(newdata);
-console.log(newdata);
+    // console.log(newdata);
   }
-  
-    
 
   function handletask() {
     const newdata = data.map((item) => {
@@ -42,86 +42,96 @@ console.log(newdata);
   }
   return (
     <>
+      {!isComplete ? (
+        <button
+          className="float-end text-gray-400 hover:text-green-400 transition-colors duration-300"
+          onClick={() => handlecomp()}
+        >
+          <FaRegCircle className="mt-1" />
+        </button>
+      ) : isComplete ? (
+        <button
+          className="float-end text-green-400 hover:text-gray-400 transition-colors duration-300"
+          onClick={() => handlecomp( )}
+        >
+          <FaRegCheckCircle className="mt-1" />
+        </button>
+      ) : null}
       {newdata &&
         newdata.map((item, index) => {
           if (item.Projid === activeproj) {
             return (
               <div
                 key={index}
-                className="flex-1 bg-zinc-100 p-8 rounded-xl max-w-[60%]"
+                className="flex-1 bg-white shadow-lg p-8 rounded-xl max-w-[60%] mx-auto mt-0 font-serif "
               >
                 <header>
-                  <div className="flex gap-[30%] font-serif font-semibold">
+                  <div className="flex justify-between items-center font-serif mb-4">
                     <h1
-                      className="text-[24px] py-0  px-7"
+                      className="text-2xl py-0 px-7 cursor-pointer hover:text-blue-600"
                       onClick={() => handleisOpen(item.Projid)}
                     >
                       {item.title}
                     </h1>
                     <button
-                      className=" text-rose-600 border border-rose-600 px-4 rounded-full py-1 hover:bg-rose-600 hover:text-stone-50"
+                      className="text-rose-600 border border-rose-600 px-4 rounded-full py-1 hover:bg-rose-600 hover:text-white transition-colors duration-300"
                       onClick={() => handleDele(activeproj)}
                     >
                       Delete
                     </button>
                   </div>
-                  <p className="ml-5  px-2 font-serif text-slate-500">
+                  <p className="ml-5 px-2 font-serif text-slate-500">
                     {item.due}
                   </p>
-
-                  <p className="px-2 mx-5 font-serif py-4">{item.descriptio}</p>
+                  <p className="px-2 mx-5 font-serif py-4 text-gray-700">
+                    {item.descriptio}
+                  </p>
                   <hr />
                 </header>
                 <section>
-                  <input
-                    type="text"
-                    value={task}
-                    onChange={(e) => settask(e.target.value)}
-                    className=" w-60 py-1 px-2 m-5 ml-[25%] font-serif text-black border border-gray-300 rounded-lg bg-gray-50 "
-                  />
-
-                  <button
-                    className=" bg-rose-600  font-serif py-[5px] px-3 text-white rounded-xl hover:border hover:border-rose-600 hover:bg-white hover:text-rose-600"
-                    onClick={() => handletask()}
-                  >
-                    Add Task
-                  </button>
-                  
-                    <ul className="border w-[90%]  px-3 py-6">
+                  <div className="flex items-center mb-4 mr-[20%]">
+                    <input
+                      type="text"
+                      value={task}
+                      onChange={(e) => settask(e.target.value)}
+                      className="flex-grow py-2 px-4 m-5 ml-[30%] font-serif text-black border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <button
+                      className="bg-rose-600 font-serif py-2 px-4 text-white rounded-xl hover:border hover:border-rose-600 hover:bg-white hover:text-rose-600 transition-colors duration-300"
+                      onClick={() => handletask()}
+                    >
+                      Add Task
+                    </button>
+                  </div>
+                  <ul className="border w-[90%] px-3 py-6 mx-auto bg-gray-50 rounded-lg shadow-inner">
                     {item.tasks &&
                       item.tasks.map((task, taskIndex) => (
-                        <>
-                          <li
-                            key={taskIndex}
-                            className="mt-5 px-5 font-serif font-bold "
-                          >
-                            {task}
-                            <button className=" text-stone-600 border border-stone-500 hover:border-rose-600 px-4 rounded-full hover:bg-rose-600 hover:text-stone-50 float-end py-" onClick={()=>handleclear(taskIndex)}>
+                        <li
+                          key={taskIndex}
+                          className="mt-5 px-5 font-serif font-bold flex justify-between items-center"
+                        >
+                          {task}
+                          <div className="flex items-center space-x-2">
+                            <button
+                              className="text-stone-600 border border-stone-500 hover:border-rose-600 px-4 rounded-full hover:bg-rose-600 hover:text-white transition-colors duration-300"
+                              onClick={() => handleclear(taskIndex)}
+                            >
                               Clear
                             </button>
-                          </li>
-                        </>
-                      ))} 
-                       {
-                    !item.tasks&& 
-                    <p className="font-serif font-bold text-stone-700 text-center">No tasks yet</p>
-                  }
-                  {
-                    item.tasks&&item.tasks.length===0&& 
-                    <p className="font-serif font-bold text-stone-700 text-center">No tasks yet</p>
-                  }
-                    {/* {tasks.length > 0 && (
-                      <li className="mt-5 px-5 font-serif font-bold">
-                        <button
-                          className="text-rose-600 border border-rose-600 px-4 rounded-full hover:bg-rose-600 hover:text-stone-50"
-                          onClick={handleClearTasks}
-                        >
-                          Clear All
-                        </button>
-                      </li>
-                    )} */}
+                          </div>
+                        </li>
+                      ))}
+                    {!item.tasks && (
+                      <p className="font-serif font-bold text-stone-700 text-center">
+                        No tasks yet
+                      </p>
+                    )}
+                    {item.tasks && item.tasks.length === 0 && (
+                      <p className="font-serif font-bold text-stone-700 text-center">
+                        No tasks yet
+                      </p>
+                    )}
                   </ul>
-                
                 </section>
               </div>
             );

@@ -10,6 +10,12 @@ function Newpro({ data, setData }) {
 
   const [descriptioerror, setdesError] = useState(false);
 
+
+  function generateRandomId() {
+    return `p${Math.random().toString(36).substr(2, 9)}_${Date.now()}`;
+  }
+
+
   function handleSave() {
 
     const trimmedTitle = title.trim();
@@ -27,7 +33,7 @@ function Newpro({ data, setData }) {
           title: trimmedTitle,
           descriptio: trimmedDescriptio,
           due,
-          Projid: data.length,
+          Projid: generateRandomId(),
         },
         ...data,
       ]);
@@ -42,8 +48,8 @@ function Newpro({ data, setData }) {
   }
 
   return (
-    <div className="mt-16 w-[35rem]">
-      <menu className="flex items-center justify-end gap-4 my-4">
+    <div className="mt-10 w-[35rem] ml-40 shadow-2xl p-6 rounded">
+      <menu className="flex items-center justify-end gap-4 my-2">
         <li>
           <button
             className="text-stone-800 hover:text-stone-950"

@@ -5,6 +5,7 @@ import Sidenav from "./components/Sidenav";
 import Openedproj from "./components/Openedproj";
 
 function App() {
+
   const [newproj, setnewproj] = useState(false);
   const [data, setData] = useState([]);
   const [isprojOpen, setisprojOpen] = useState(false);
@@ -17,8 +18,9 @@ function App() {
   }
 
   return (
-    <main className="gap-8 flex h-screen my-8">
+    <main className="gap-8 flex my-8">
       <Sidenav
+      activeproj={activeproj}
         setnewproj={setnewproj}
         setactiveproj={setactiveproj}
         isprojOpen={isprojOpen}
@@ -27,9 +29,10 @@ function App() {
         clickk={newprojHandler}
       />
       {newproj && <Newpro data={data} setData={setData} />}
-      {!newproj && !isprojOpen && <Headerr clickk={newprojHandler} />}
-      {isprojOpen && <Openedproj setData={setData} data={data} activeproj={activeproj} />}{" "}
+      {!newproj && !isprojOpen  && <Headerr  clickk={newprojHandler} />}
+      {isprojOpen && <Openedproj setData={setData} data={data}  activeproj={activeproj} />}{" "}
     </main>
+    
   );
 }
 
