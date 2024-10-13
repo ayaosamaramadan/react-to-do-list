@@ -12,13 +12,13 @@ function Sidenav({
   setactiveproj,
 }) {
   return (
-    <aside className="text-stone-50 h-[90vh] w-[33.33%] px-8 bg-zinc-800 py-16 md:w-72 rounded-r-xl font-serif">
+    <aside className="text-stone-50 dark:text-stone-200 h-[90vh] w-[33.33%] px-8 bg-zinc-800 dark:bg-zinc-900 py-16 md:w-72 rounded-r-xl font-serif">
       <h2 className="mb-8 font-bold uppercase md:text-xl text-stone-50">
         Your Projects
       </h2>
       <div>
         <Button onclick={clickk}>
-          <span className="inline-flex items-center">
+          <span className="inline-flex items-center text-stone-50 dark:text-stone-200">
             <FaPlusCircle className="mr-2" /> Add Project
           </span>
         </Button>

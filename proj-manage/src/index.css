@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply dark:bg-gray-800 
+  }
+  
+
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -27,4 +34,5 @@ li {
 
 button {
   transition: all 0.5s ease;
+}
 }

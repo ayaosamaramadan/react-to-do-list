@@ -6,7 +6,7 @@ function Erro({ d, t }) {
   return (
     <>
       {iserror && (
-        <div className="bg-red-200 text-red-800 p-4 rounded-md">
+        <div className="bg-red-200 dark:bg-red-900 text-red-800 dark:text-red-200 p-4 rounded-md">
           {t === '' && d === '' ? (
             <p>Title and Description cannot be empty</p>
             

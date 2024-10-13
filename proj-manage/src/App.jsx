@@ -12,7 +12,7 @@ function App() {
   const [isprojOpen, setisprojOpen] = useState(false);
   const [activeproj, setactiveproj] = useState(null);
   const [darkMode, setDarkMode] = useState(() => {
-    const savedMode = localStorage.getItem("darkMode");
+  const savedMode = localStorage.getItem("darkMode");
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
