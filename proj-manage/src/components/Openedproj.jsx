@@ -4,7 +4,7 @@ import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 function Openedproj({ data, activeproj, setData }) {
   const [task, settask] = useState("");
   // const [activeclear, setactiveclear] = useState(null);
-  const [isComplete, setIsComplete] = useState(false);
+  // const [isComplete, setIsComplete] = useState(false);
 
   let newdata = data;
 
@@ -40,9 +40,13 @@ function Openedproj({ data, activeproj, setData }) {
     setData(newdata);
     settask("");
   }
+
+  // function handlecomp() {
+  //   setIsComplete(!isComplete);
+  // }
   return (
     <>
-      {!isComplete ? (
+      {/* {!isComplete ? (
         <button
           className="float-end text-gray-400 hover:text-green-400 transition-colors duration-300"
           onClick={() => handlecomp()}
@@ -56,7 +60,7 @@ function Openedproj({ data, activeproj, setData }) {
         >
           <FaRegCheckCircle className="mt-1" />
         </button>
-      ) : null}
+      ) : null} */}
       {newdata &&
         newdata.map((item, index) => {
           if (item.Projid === activeproj) {

@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 ::-webkit-scrollbar {
   width: 10px;
 }
-
 
 ::-webkit-scrollbar-track {
   background: #888;
@@ -18,16 +16,15 @@
   border-radius: 5px;
 }
 
-
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
 
 li {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
 button {
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }

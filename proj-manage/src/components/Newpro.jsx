@@ -2,22 +2,18 @@ import { useState } from "react";
 import Inputss from "./Inputss";
 import Erro from "./erro";
 
-function Newpro({ data, setData }) {
+function Newpro({ setnewproj, data, setData, newproj }) {
   const [title, settitle] = useState("");
   const [descriptio, setdescription] = useState("");
   const [due, setdue] = useState(new Date().toISOString().split("T")[0]);
   const [titleerror, settitError] = useState(false);
-
   const [descriptioerror, setdesError] = useState(false);
-
 
   function generateRandomId() {
     return `p${Math.random().toString(36).substr(2, 9)}_${Date.now()}`;
   }
 
-
   function handleSave() {
-
     const trimmedTitle = title.trim();
     const trimmedDescriptio = descriptio.trim();
 
@@ -45,6 +41,7 @@ function Newpro({ data, setData }) {
     settitle("");
     setdescription("");
     setdue(new Date().toISOString().split("T")[0]);
+    setnewproj((newproj) => !newproj);
   }
 
   return (
@@ -67,16 +64,18 @@ function Newpro({ data, setData }) {
           </button>
         </li>
       </menu>
-      
+
       <div>
-        <Inputss titleerror={titleerror}
+        <Inputss
+          titleerror={titleerror}
           descriptioerror={descriptioerror}
           title={title}
           settitle={settitle}
           descriptio={descriptio}
           setdescription={setdescription}
           due={due}
-          setdue={setdue}/>
+          setdue={setdue}
+        />
       </div>
 
       {(titleerror || descriptioerror) && <Erro t={title} d={descriptio} />}
