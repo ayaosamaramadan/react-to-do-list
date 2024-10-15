@@ -5,7 +5,7 @@ function Headerr() {
 
   const {newprojHandler} = useAppContext();
   return (
-    <div className="dark:bg-gray-800 mt-28 text-center w-[67.333%]">
+    <div className="dark:bg-gray-800 mt-44 text-center w-[67.333%]">
       <img
         src={projImage}
         width={120}

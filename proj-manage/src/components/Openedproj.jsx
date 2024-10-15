@@ -66,7 +66,7 @@ function Openedproj() {
                       Add Task
                     </button>
                     <button
-                      className="ml-2 dark:bg-red-700 dark:hover:bg-red-800 bg-red-600 font-serif py-2 px-4 text-white rounded-xl hover:border hover:border-red-600 hover:bg-white hover:text-red-600 transition-colors duration-300 dark:text-white dark:border-gray-900"
+                      className="ml-2 dark:bg-red-700 dark:hover:bg-red-800 bg-stone-500 font-serif py-2 px-4 text-white rounded-xl hover:border-0 hover:border-red-600 hover:bg-stone-900 transition-colors duration-300 dark:text-white dark:border-gray-900"
                       onClick={handleclear}
                     >
                       Clear

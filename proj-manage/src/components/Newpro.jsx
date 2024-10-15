@@ -1,9 +1,10 @@
 import Inputss from "./Inputss";
 import Erro from "./erro";
 import { useAppContext } from "./AppContext";
+import Noerro from "./Noerro";
 
 function Newpro() {
-  const { titleerror, handleSave, handleCancel, descriptioerror } =
+  const { titleerror, handleSave,isProjectAdded , handleCancel, descriptioerror , } =
     useAppContext();
 
   return (
@@ -32,6 +33,9 @@ function Newpro() {
       </div>
 
       {(titleerror || descriptioerror) && <Erro />}
+    {
+      isProjectAdded && <Noerro/>
+    }
     </div>
   );
 }

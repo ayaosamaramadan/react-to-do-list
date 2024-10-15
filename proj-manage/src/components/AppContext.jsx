@@ -14,6 +14,7 @@ export const AppProvider = ({ children }) => {
   const [due, setdue] = useState(new Date().toISOString().split("T")[0]);
   const [titleerror, settitError] = useState(false);
   const [descriptioerror, setdesError] = useState(false);
+  const [isProjectAdded,setIsProjectAdded]=useState(false);
 
   useEffect(() => {
     if (darkMode) {
@@ -87,14 +88,15 @@ export const AppProvider = ({ children }) => {
   const handleSave = () => {
     const trimmedTitle = title.trim();
     const trimmedDescriptio = descriptio.trim();
-
+  
     const isTitleEmpty = trimmedTitle === "";
     const isDescriptioEmpty = trimmedDescriptio === "";
-
+  
     settitError(isTitleEmpty);
     setdesError(isDescriptioEmpty);
-
+  
     if (!isTitleEmpty && !isDescriptioEmpty) {
+      setIsProjectAdded(true);
       setData([
         {
           title: trimmedTitle,
@@ -104,7 +106,15 @@ export const AppProvider = ({ children }) => {
         },
         ...data,
       ]);
+  
+      settitle("");
+      setdescription("");
       console.log(data);
+  
+    
+      setTimeout(() => {
+        setIsProjectAdded(false);
+      }, 3000);
     }
   };
 
@@ -138,6 +148,8 @@ export const AppProvider = ({ children }) => {
         activeproj,
         darkMode,
         newprojHandler,
+        isProjectAdded,
+      
         toggleDarkMode,
         handleclear,
         handletask,
