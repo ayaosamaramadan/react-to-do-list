@@ -1,39 +1,26 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Headerr from "./components/Headerr";
 import Newpro from "./components/Newpro";
 import Sidenav from "./components/Sidenav";
 import Openedproj from "./components/Openedproj";
 import { TbMoonFilled } from "react-icons/tb";
 import { IoSunnySharp } from "react-icons/io5";
+import { useAppContext } from "./components/AppContext";
 
 function App() {
-  const [newproj, setnewproj] = useState(false);
-  const [data, setData] = useState([]);
-  const [isprojOpen, setisprojOpen] = useState(false);
-  const [activeproj, setactiveproj] = useState(null);
-  const [darkMode, setDarkMode] = useState(() => {
-  const savedMode = localStorage.getItem("darkMode");
-    return savedMode ? JSON.parse(savedMode) : false;
-  });
-
-  function newprojHandler() {
-    setnewproj(true);
-    setisprojOpen(false);
-  }
-
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
-
-  function toggleDarkMode() {
-    setDarkMode(!darkMode);
-  }
+  const {
+    data,
+    setData,
+    newproj,
+    setnewproj,
+    isprojOpen,
+    setisprojOpen,
+    activeproj,
+    setactiveproj,
+    darkMode,
+    newprojHandler,
+    toggleDarkMode,
+  } = useAppContext();
 
   return (
     <>
