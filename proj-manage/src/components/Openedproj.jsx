@@ -1,50 +1,22 @@
-import React, { useState } from "react";
-import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
 
-function Openedproj({ data, activeproj, setData }) {
-  const [task, settask] = useState("");
+import { FaRegCheckCircle, FaRegCircle } from "react-icons/fa";
+import { useAppContext } from "./AppContext";
+
+function Openedproj() {
+
+  const {
+    handlecomp,
+    data,
+    handletask,
+    task,
+    settask,
+    handleDele,
+    activeproj,
+    handleclear
+  } = useAppContext();
 
   let newdata = data;
 
-  function handleDele(activeproj) {
-    const newdata = data.filter((item) => item.Projid !== activeproj);
-    setData(newdata);
-  }
-
-  const handleclear = () => {
-    settask("");
-  };
-
-  function handletask() {
-    const newdata = data.map((item) => {
-      if (item.Projid === activeproj) {
-        return {
-          ...item,
-          tasks: [...(item.tasks || []), { text: task, isComplete: false }],
-        };
-      }
-      return item;
-    });
-    setData(newdata);
-    settask("");
-  }
-
-  function handlecomp(taskIndex) {
-    const newdata = data.map((item) => {
-      if (item.Projid === activeproj) {
-        return {
-          ...item,
-          tasks: item.tasks.map((task, index) =>
-            index === taskIndex
-              ? { ...task, isComplete: !task.isComplete }
-              : task
-          ),
-        };
-      }
-      return item;
-    });
-    setData(newdata);
-  }
   return (
     <>
       {newdata &&

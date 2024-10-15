@@ -1,21 +1,7 @@
-function Theproj({
-  activeproj,
-  item,
-  setisprojOpen,
-  setnewproj,
-  setactiveproj,
-}) {
-  function handleisOpen(Projid) {
-    // console.log(Projid);
-    // console.log(item.Projid);
-    {
-      item.Projid === Projid && setisprojOpen(true);
-      setactiveproj(Projid);
-      setnewproj(false);
-    }
+import { useAppContext } from "./AppContext";
 
-    console.log(activeproj);
-  }
+function Theproj({ item }) {
+  const { handleisOpen } = useAppContext();
 
   return (
     <>

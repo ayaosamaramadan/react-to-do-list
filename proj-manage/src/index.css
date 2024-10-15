@@ -6,8 +6,6 @@
   body {
     @apply dark:bg-gray-800 
   }
-  
-
 
 ::-webkit-scrollbar {
   width: 10px;

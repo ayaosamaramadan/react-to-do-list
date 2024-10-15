@@ -1,6 +1,9 @@
 import projImage from "../assets/3193260.png";
+import { useAppContext } from "./AppContext";
 import Button from "./Button";
-function Headerr({ clickk }) {
+function Headerr() {
+
+  const {newprojHandler} = useAppContext();
   return (
     <div className="dark:bg-gray-800 mt-28 text-center w-[67.333%]">
       <img
@@ -16,7 +19,7 @@ function Headerr({ clickk }) {
         Select a project from the sidebar to get started
       </p>
 
-      <Button onclick={clickk}>Add Task</Button>
+      <Button onclick={newprojHandler}>Add Task</Button>
     </div>
   );
 }

@@ -1,15 +1,18 @@
+import { useAppContext } from "./AppContext";
+
 const para = ["Title", "Description", "Due Date"];
 
-function Inputss({
-  descriptioerror,
-  titleerror,
-  title,
-  settitle,
-  descriptio,
-  setdescription,
-  due,
-  setdue,
-}) {
+function Inputss() {
+  const{descriptioerror,
+    titleerror,
+    title,
+    settitle,
+    descriptio,
+    setdescription,
+    due,
+    setdue
+  }=useAppContext();
+
   return (
     <>
       {para.map((item, index) => (

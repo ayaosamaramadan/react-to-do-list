@@ -1,8 +1,6 @@
-import React, { createContext, useState, useContext } from 'react';
-
+import React, { createContext, useState, useContext, useEffect } from "react";
 
 const AppContext = createContext();
-
 
 export const AppProvider = ({ children }) => {
   const [data, setData] = useState([]);
@@ -11,6 +9,19 @@ export const AppProvider = ({ children }) => {
   const [isprojOpen, setisprojOpen] = useState(false);
   const [activeproj, setactiveproj] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
+  const [title, settitle] = useState("");
+  const [descriptio, setdescription] = useState("");
+  const [due, setdue] = useState(new Date().toISOString().split("T")[0]);
+  const [titleerror, settitError] = useState(false);
+  const [descriptioerror, setdesError] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   const newprojHandler = () => {
     setnewproj(!newproj);
@@ -26,10 +37,19 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleclear = () => {
-    settask("");
+    const newdata = data.map((item) => {
+      if (item.Projid === activeproj) {
+        return {
+          ...item,
+          tasks: [],
+        };
+      }
+      return item;
+    });
+    setData(newdata);
   };
 
-  const handletask = (activeproj) => {
+  const handletask = () => {
     const newdata = data.map((item) => {
       if (item.Projid === activeproj) {
         return {
@@ -43,19 +63,66 @@ export const AppProvider = ({ children }) => {
     settask("");
   };
 
-  const handlecomp = (activeproj, taskIndex) => {
+  const handlecomp = (taskIndex) => {
     const newdata = data.map((item) => {
       if (item.Projid === activeproj) {
         return {
           ...item,
           tasks: item.tasks.map((task, index) =>
-            index === taskIndex ? { ...task, isComplete: !task.isComplete } : task
+            index === taskIndex
+              ? { ...task, isComplete: !task.isComplete }
+              : task
           ),
         };
       }
       return item;
     });
     setData(newdata);
+  };
+
+  const generateRandomId = () => {
+    return `p${Math.random().toString(36).substr(2, 9)}_${Date.now()}`;
+  };
+
+  const handleSave = () => {
+    const trimmedTitle = title.trim();
+    const trimmedDescriptio = descriptio.trim();
+
+    const isTitleEmpty = trimmedTitle === "";
+    const isDescriptioEmpty = trimmedDescriptio === "";
+
+    settitError(isTitleEmpty);
+    setdesError(isDescriptioEmpty);
+
+    if (!isTitleEmpty && !isDescriptioEmpty) {
+      setData([
+        {
+          title: trimmedTitle,
+          descriptio: trimmedDescriptio,
+          due,
+          Projid: generateRandomId(),
+        },
+        ...data,
+      ]);
+      console.log(data);
+    }
+  };
+
+  const handleCancel = () => {
+    settitle("");
+    setdescription("");
+    setdue(new Date().toISOString().split("T")[0]);
+    setnewproj((newproj) => !newproj);
+  };
+
+  const handleisOpen = (Projid) => {
+    data.forEach((item) => {
+      if (item.Projid === Projid) {
+        setisprojOpen(true);
+        setactiveproj(Projid);
+        setnewproj(false);
+      }
+    });
   };
 
   return (
@@ -65,27 +132,33 @@ export const AppProvider = ({ children }) => {
         setData,
         task,
         settask,
+        handleDele,
         newproj,
-        setnewproj,
         isprojOpen,
-        setisprojOpen,
         activeproj,
-        setactiveproj,
         darkMode,
-        setDarkMode,
         newprojHandler,
         toggleDarkMode,
-        handleDele,
         handleclear,
         handletask,
         handlecomp,
+        title,
+        settitle,
+        descriptio,
+        setdescription,
+        due,
+        setdue,
+        titleerror,
+        descriptioerror,
+        handleSave,
+        handleCancel,
+        handleisOpen,
       }}
     >
       {children}
     </AppContext.Provider>
   );
 };
-
 
 export const useAppContext = () => {
   return useContext(AppContext);
