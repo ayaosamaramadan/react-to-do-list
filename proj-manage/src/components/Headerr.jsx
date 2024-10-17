@@ -1,17 +1,24 @@
-import projImage from "../assets/3193260.png";
+import LightImage from "../assets/3193260.png";
+import DarkImage from "../assets/228370.png";
 import { useAppContext } from "./AppContext";
 import Button from "./Button";
 function Headerr() {
 
-  const {newprojHandler} = useAppContext();
+  const {newprojHandler ,darkMode} = useAppContext();
   return (
     <div className="dark:bg-gray-800 mt-44 text-center w-[67.333%]">
-      <img
-        src={projImage}
+      {!darkMode&&<img
+        src={LightImage}
         width={120}
         className="mx-auto object-contain"
         alt="project-image"
-      />
+      />}
+      {darkMode&&<img
+        src={DarkImage}
+        width={120}
+        className="mx-auto object-contain"
+        alt="project-image"
+      />}
       <h2 className="dark:text-stone-300 text-xl font-bold text-ston-500 my-4">
         No Project Selected
       </h2>

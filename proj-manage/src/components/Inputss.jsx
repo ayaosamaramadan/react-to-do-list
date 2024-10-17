@@ -24,17 +24,19 @@ function Inputss() {
             <textarea
               value={descriptio}
               className={` dark:bg-stone-800 dark:text-stone-200 text-slate-600 focus:outline-none focus:border-stone-300 bg-stone-200 w-full p-1 border-b-2  rounded-sm ${
-                descriptioerror ? "border-red-300 dark:border-red-900":"border-stone-300 dark:dark:border-neutral-600"
-              } `}
+                descriptioerror
+                ? "border-red-300 dark:border-red-900"
+                : "border-stone-300 dark:border-neutral-600"  } `}
               onChange={(e) => setdescription(e.target.value)}
             />
           ) : item === "Title" ? (
             <input
               type="text"
               value={title}
-              className={`dark:border-stone-600 dark:bg-stone-800 dark:text-stone-200 text-slate-600 focus:outline-none focus:border-stone-300 bg-stone-200 w-full p-1 border-b-2 rounded-sm ${
-                titleerror ? "border-red-300 dark:border-red-900":"border-stone-300 dark:dark:border-neutral-600"
-              }`}
+              className={` dark:bg-stone-800 dark:text-stone-200 text-slate-600 focus:outline-none focus:border-stone-300 bg-stone-200 w-full p-1 border-b-2  rounded-sm ${
+                titleerror
+                  ? "border-red-300 dark:border-red-900"
+                  : "border-stone-300 dark:border-neutral-600"}`}
               onChange={(e) => settitle(e.target.value)}
             />
           ) : (

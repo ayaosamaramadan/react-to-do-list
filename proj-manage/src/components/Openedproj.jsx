@@ -57,8 +57,7 @@ function Openedproj() {
                       type="text"
                       value={task}
                       onChange={(e) => settask(e.target.value)}
-                      className="flex-grow py-2 px-4 m-5 ml-[30%] font-serif text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-                    />
+                      className="flex-grow py-2 px-4 m-5 ml-[30%] font-serif text-black dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-blue-400"  />
                     <button
                       className="dark:bg-blue-700 dark:hover:bg-blue-800 bg-rose-600 font-serif py-2 px-4 text-white rounded-xl hover:border hover:border-rose-600 hover:bg-white hover:text-rose-600 transition-colors duration-300 dark:text-white dark:border-gray-900"
                       onClick={handletask}
